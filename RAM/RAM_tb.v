@@ -27,6 +27,8 @@ module RAM_tb ();
 
 	initial 
 	begin
+		$dumpfile("RAM.vcd");
+    	$dumpvars(0,RAM_tb);
 		enable <= 1;
 		wr_en 	<= 1'b0;
 		#100
