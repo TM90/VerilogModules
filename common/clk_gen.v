@@ -7,6 +7,4 @@ always
     begin
         #(period/2) clk_out <= ~clk_out;
     end
-endmodule         
-
-
+endmodule
