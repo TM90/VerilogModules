@@ -12,5 +12,5 @@ To view the waveforms gtkwave is used:
 http://gtkwave.sourceforge.net/
 
 Both modules can be installed via apt-get:
-- apt-get install iverilog
-- apt-get install gtkwave
+- sudo apt-get install iverilog
+- sudo apt-get install gtkwave
