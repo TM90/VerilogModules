@@ -15,8 +15,6 @@ RAM_I (
         );
 */
 
-
-
 module RAM
         #(
         parameter DEPTH = 4,
