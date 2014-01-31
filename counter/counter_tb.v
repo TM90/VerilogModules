@@ -8,6 +8,7 @@ module counter_tb();
 	reg res_n;
 	reg enable;
 	reg load;
+	reg dir;
 	reg[COUNTER_SIZE-1:0] cnt_in;
 	wire[COUNTER_SIZE-1:0] cnt_out;
 	wire overflow;
@@ -22,6 +23,7 @@ module counter_tb();
 	            .res_n(res_n),        
 	            .enable(enable),
 	            .load(load),
+	            .dir(dir),
 	            .cnt_in(cnt_in),
 	            .cnt_out(cnt_out),
 	            .overflow(overflow)
@@ -34,6 +36,7 @@ module counter_tb();
 		res_n <= 1'b0;
 		enable <= 1'b1;
 		load <= 1'b0;
+		dir <= 1'b0;
 		cnt_in <= {COUNTER_SIZE{1'b0}};
 		#20
 		res_n <= 1'b1;
@@ -43,6 +46,7 @@ module counter_tb();
 		#100
 		@(negedge(clk));
 		enable <= 1'b1;
+		dir <=1'b1;
 		#50
 		$stop;
 	end

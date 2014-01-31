@@ -4,7 +4,8 @@ Author: Tobias Markus
 initiation template
 RAM #(        
         .DEPTH(),
-        .WIDTH()
+        .WIDTH(),
+        .INIT_FILE()
     )
 RAM_I (
         .clk(),        
@@ -19,7 +20,8 @@ RAM_I (
 module RAM
     #(
         parameter DEPTH = 4,
-        parameter WIDTH = 8
+        parameter WIDTH = 8,
+        parameter INIT_FILE = "data.dat"
     )
     (
         input wire clk,
@@ -35,7 +37,7 @@ module RAM
     // init RAM
     initial
     begin
-        $readmemh("data.dat", memory) ;
+        $readmemh(INIT_FILE, memory) ;
     end
 
     // control and data path

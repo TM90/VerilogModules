@@ -16,7 +16,8 @@ module RAM_tb ();
     
     RAM #(          
         .DEPTH(DEPTH),
-        .WIDTH(WIDTH)
+        .WIDTH(WIDTH),
+        .INIT_FILE("data.dat")
     )
     RAM_I (
         .clk(clk),        
