@@ -66,6 +66,7 @@ proc timescale_add {file_list timescale} \
 		close $fp
 	}	
 }
+
 if {$argc < 2} {
 	write_error_msg
 }
