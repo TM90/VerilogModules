@@ -1,8 +1,9 @@
 package require Tk
 package require Img
 
-proc canvas_save w {
-    set im [image create photo -format window -data $w]
+proc canvas_save {} {
+	update
+    set im [image create photo -format window -data .can]
     set filename [tk_getSaveFile -defaultextension .jpg \
                       -filetypes {{JPEG .jpg} {"All files" *}}]
     if {$filename ne ""} {
@@ -13,7 +14,7 @@ proc canvas_save w {
 
 proc drawOutline {xpos ypos width heigth} \
 {
-	.can create rect $xpos $ypos [expr $xpos+$width] [expr $ypos+$heigth] -outline #000
+	.can create rect $xpos $ypos [expr $xpos+$width] [expr $ypos+$heigth] -outline #000 -width 3
 }
 
 proc drawText {xpos ypos text anchor} \
@@ -43,6 +44,9 @@ set input_list {}
 set output_count 0
 set output_list {}
 set start 0
+
+set xpos 100
+set ypos 50
 
 set file [lindex $argv 0]
 set fp [open $file r]
@@ -117,8 +121,8 @@ foreach it $output_list {
 }
 
 wm title . "[file tail $file]"
-canvas .can -width 600 -height 600
-
+canvas .can -width 600 -height 600 -bg white
+button .b -text "Save" -command canvas_save
 
 set width [maxStringlength $input_list]
 if {$width < [maxStringlength $output_list]} {
@@ -126,43 +130,44 @@ if {$width < [maxStringlength $output_list]} {
 }
 puts "Width: $width"
 if {$input_count < $output_count} {
-	drawOutline 50 50 [expr $width*20] [expr $output_count*30+30] 
+	drawOutline $xpos $ypos [expr $width*20] [expr $output_count*30+30] 
 } else {
-	drawOutline 50 50 [expr $width*20] [expr $input_count*30+30] 
+	drawOutline $xpos $ypos [expr $width*20] [expr $input_count*30+30] 
 }
 
-set pos 70
+set pos [expr $ypos+20]
 
 foreach input_element $input_list {
-	drawText 60 $pos $input_element nw
+	drawText [expr $xpos+10] $pos $input_element nw
+	.can create line $xpos [expr $pos+10] [expr $xpos-50] [expr $pos+10] -width 3
 	incr pos 30
 }
 
-set pos 70
+set pos [expr $ypos+20]
 
 foreach output_element $output_list {
-	drawText [expr $width*20-10+50] $pos $output_element ne
+	drawText [expr $width*20-10+$xpos] $pos $output_element ne
+	.can create line [expr $width*20+$xpos] [expr $pos+10] [expr $width*20+$xpos+50] [expr $pos+10] -width 3
 	incr pos 30 
 }
 
-set pos 70
+set pos [expr $ypos+20]
 
 foreach parameter_element $parameter_list {
 	if {$input_count > $output_count} {
-		drawText 60 [expr $input_count*30+30+$pos]  $parameter_element nw
+		drawText [expr $xpos+10] [expr $input_count*30+30+$pos] $parameter_element nw
 	} else {
-		drawText 60 [expr $output_count*30+30+$pos]  $parameter_element nw
+		drawText [expr $xpos+10] [expr $output_count*30+30+$pos] $parameter_element nw
 	}
 	
 	incr pos 30 
 }
-.can configure -width [expr $width*20-10+50+50]
+.can configure -width [expr $width*20-10+[expr 2*$xpos]]
 if {$input_count > $output_count} {
 	.can configure -height [expr $input_count*30+30+$pos+30]
 } else {
 	.can configure -height [expr $output_count*30+30+$pos+30]
 }
 pack .can
+pack .b
 
-update
-canvas_save .can
