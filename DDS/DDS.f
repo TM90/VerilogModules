@@ -1,6 +1,6 @@
 ../common/clk_gen.v
-../RAM/RAM.v
-phaseakku.v
-DDS.v
-DDS_tb.v
+../RAM/RAM.sv
+phaseakku.sv
+DDS.sv
+DDS_tb.sv
 

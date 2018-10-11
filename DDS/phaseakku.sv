@@ -17,10 +17,10 @@ module phaseakku
 	    parameter WIDTH = 32 
   	)
 	(
-		input clk,
-		input res_n,
-	    input[WIDTH/2-1:0] freq_cntrl,
-	    output reg[WIDTH-1:0] akku_out
+		input logic clk,
+		input logic res_n,
+	    input logic[WIDTH/2-1:0] freq_cntrl,
+	    output logic[WIDTH-1:0] akku_out
 	);
 	
 	always @(posedge clk) 
