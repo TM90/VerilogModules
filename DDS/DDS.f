@@ -1,4 +1,4 @@
-../common/clk_gen.v
+../common/clk_gen.sv
 ../RAM/RAM.sv
 phaseakku.sv
 DDS.sv
