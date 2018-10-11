@@ -16,22 +16,23 @@ counter_I (
             .overflow()
         );
 */
+
 module counter
 	#(
 	    parameter counter_size = 8 
   	)
 	(
-	    input clk,
-	    input res_n,
-	    input enable,
-	    input load,
-	    input dir,
-	    input[counter_size-1:0] cnt_in,
-	    output reg[counter_size-1:0] cnt_out,
-	    output reg overflow
+	    input logic clk,
+	    input logic res_n,
+	    input logic enable,
+	    input logic load,
+	    input logic dir,
+	    input logic[counter_size-1:0] cnt_in,
+	    output logic[counter_size-1:0] cnt_out,
+	    output logic overflow
 	);
 
-	always @(posedge clk) 
+	always @(posedge clk, negedge res_n) 
 	begin
 		if (res_n == 0) 
 		begin

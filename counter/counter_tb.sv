@@ -4,14 +4,14 @@ module counter_tb();
 	parameter PERIOD = 10;
 	parameter COUNTER_SIZE = 32;
 
-	wire clk;
-	reg res_n;
-	reg enable;
-	reg load;
-	reg dir;
-	reg[COUNTER_SIZE-1:0] cnt_in;
-	wire[COUNTER_SIZE-1:0] cnt_out;
-	wire overflow;
+	logic clk;
+	logic res_n;
+	logic enable;
+	logic load;
+	logic dir;
+	logic[COUNTER_SIZE-1:0] cnt_in;
+	logic[COUNTER_SIZE-1:0] cnt_out;
+	logic overflow;
 
 	clk_gen #(.period(PERIOD)) clk_gen_I (.clk_out(clk));
 

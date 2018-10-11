@@ -1,3 +1,3 @@
 ../common/clk_gen.v
-counter.v
-counter_tb.v
+counter.sv
+counter_tb.sv
