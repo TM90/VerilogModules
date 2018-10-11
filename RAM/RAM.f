@@ -1,3 +1,3 @@
 ../common/clk_gen.v
-RAM.v
-RAM_tb.v
+RAM.sv
+RAM_tb.sv

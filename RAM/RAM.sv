@@ -24,15 +24,15 @@ module RAM
         parameter INIT_FILE = "data.dat"
     )
     (
-        input wire clk,
-        input wire enable,
-        input wire wr_en,
-        input wire[DEPTH-1:0] address,
-        input wire[WIDTH-1:0] data_in,
-        output reg[WIDTH-1:0] data_out
+        input logic clk,
+        input logic enable,
+        input logic wr_en,
+        input logic[DEPTH-1:0] address,
+        input logic[WIDTH-1:0] data_in,
+        output logic[WIDTH-1:0] data_out
     );
 
-    reg[WIDTH-1:0] memory [0:2**DEPTH-1];
+    logic[WIDTH-1:0] memory [0:2**DEPTH-1];
     
     // init RAM
     initial

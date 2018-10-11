@@ -5,12 +5,12 @@ module RAM_tb ();
     parameter DEPTH = 4;
     parameter PERIOD = 10;
 
-    wire clk;
-    reg enable;
-    reg wr_en;
-    reg[DEPTH-1:0] address;
-    reg[WIDTH-1:0] data_in;
-    wire[WIDTH-1:0] data_out;
+    logic clk;
+    logic enable;
+    logic wr_en;
+    logic[DEPTH-1:0] address;
+    logic[WIDTH-1:0] data_in;
+    logic[WIDTH-1:0] data_out;
     
     clk_gen #(.period(PERIOD)) clk_gen_I (.clk_out(clk));
     
@@ -32,9 +32,10 @@ module RAM_tb ();
     begin
         $dumpfile("RAM.vcd");
         $dumpvars(0,RAM_tb);
-        enable <= 1;
+        enable <= 1'b0;
         wr_en         <= 1'b0;
         #100
+        enable <= 1'b1;
         address <= 0;
         #20
         address <= 1;
